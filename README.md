@@ -1,6 +1,8 @@
 # human-ai-representation-bridge
 
-An experimental human–AI interface research project. v0.1 asks one question:
+**HAIR Bridge — Human–AI Representation Bridge**
+
+An experimental human–AI interface research project. v0.1.1 asks one question:
 **Can an explicit intermediate representation make hidden interpretation assumptions
 visible and testable?**
 
@@ -26,7 +28,7 @@ novelty nor validated improvement.
 Human → Bridge → AI
 Human ← Bridge ← AI
 
-v0.1: input + context → authored fixture SBR → human-readable reconstruction
+v0.1.1: input + context → direct or SBR condition → human fidelity rating
 ```
 
 The conceptual model is bidirectional. The implementation provides a provider
@@ -76,6 +78,7 @@ with `.venv\Scripts\Activate.ps1`. Then:
 ```sh
 python -m pip install -e .
 python -m hairbridge
+python -m hairbridge.eval
 python examples/round_trip.py
 python -m unittest discover -s tests -v
 ```
@@ -97,22 +100,30 @@ The default `FixtureTranslator` matches exact input **and context**. Unknown pai
 raise `ValueError`. A future provider can implement `Translator.interpret(raw_input,
 *, context)` and return a validated SBR, passed using the `translator=` argument.
 General semantic interpretation would require an additional provider, such as an
-LLM-backed implementation; none is included in v0.1. Interpretation never executes actions.
+LLM-backed implementation; none is included in v0.1.1. Interpretation never executes actions.
 
 ## Tests and examples
 
-The four authored cases cover reference imitation, “That's slow,” “It's still the
+The four translator fixtures cover reference imitation, “That's slow,” “It's still the
 same,” and “What am I missing?” Tests check schema, required fields, confidence
 bounds, translation contracts, context mismatch, and fixture classifications.
 They are deterministic software checks, not semantic evaluation results.
+
+The separate [v0.1 evaluation dataset](evals/v0.1/cases.json) contains 16 cases:
+eight hidden-intent cases and eight literal-is-correct controls. The controls test the
+failure mode in which an interpreter invents deeper meaning even when the literal ask
+is correct. The [baseline experiment](docs/baseline-experiment.md) compares direct and
+SBR-assisted reconstructions on the same cases. Run `python -m hairbridge.eval` to
+validate the dataset; pass measured result files to calculate descriptive summaries.
 
 ## RTSF
 
 **Round-Trip Semantic Fidelity (RTSF)** is an experimental human rating of whether
 the reconstructed meaning matches the originating person's intent. Proposed anchors:
 1.00 exact; 0.75 mostly correct; 0.50 partial; 0.25 wrong abstraction; 0.00 wrong object.
-It is not scientifically validated, and v0.1 has **no measured RTSF results**.
-See the [experiment protocol and limitations](docs/experiment.md).
+It is not scientifically validated, and v0.1.1 has **no measured RTSF results**.
+See the [baseline protocol](docs/baseline-experiment.md) and the original
+[metric discussion](docs/experiment.md).
 
 ## Limitations
 
@@ -125,9 +136,11 @@ personality clone, consciousness claim, agent framework, or heavy infrastructure
 ## Roadmap
 
 - v0.1: explicit schema, four fixture cases, readable reconstruction, and contract tests.
-- Future research, outside this implementation: compare with a direct baseline on
-  unseen inputs, collect human ratings, and evaluate a semantic provider only when
-  a bounded experiment justifies it.
+- v0.1.1: balanced evaluation cases, direct-versus-SBR protocol, result schema,
+  local evaluator, and continuous integration. This is a scaffold, not a measured result.
+- Future research, outside this implementation: run the protocol with originating
+  humans and unseen holdout inputs, then consider a semantic provider only when the
+  evidence justifies it.
 
 ## Research questions
 
@@ -141,6 +154,6 @@ personality clone, consciousness claim, agent framework, or heavy infrastructure
 Contribute minimal anonymized input/context pairs, competing interpretations,
 disproof conditions, and regression tests. Separate hypotheses from observations
 and measured results. Avoid private conversation history and credentials. Explain
-how a proposal helps answer the v0.1 question before adding dependencies or scope.
+how a proposal helps answer the v0.1.1 research question before adding dependencies or scope.
 
 Licensed under the [Apache License 2.0](LICENSE).

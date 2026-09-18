@@ -1,4 +1,8 @@
-# v0.1 experiment and Round-Trip Semantic Fidelity
+# Round-Trip Semantic Fidelity
+
+The executable v0.1.1 direct-versus-SBR protocol is documented in
+[`baseline-experiment.md`](baseline-experiment.md). This document defines the metric's
+original experimental boundary.
 
 ## Hypothesis
 

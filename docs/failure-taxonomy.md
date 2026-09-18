@@ -29,6 +29,8 @@ These labels are working definitions, not validated or mutually exclusive diagno
 
 - **wrong abstraction level**: reasoning about surface details when the intended issue may be structure, or the reverse.
 - **over-preservation**: retaining a structure the user may expect to replace.
+- **over-interpretation**: inventing hidden meaning when the literal request is supported by context.
+- **scope expansion**: broadening a bounded request beyond the change the user asked for.
 
 Labels describe candidate failures, not properties of a person. The fixture tests
 verify authored classifications are preserved; they do not validate a classifier.

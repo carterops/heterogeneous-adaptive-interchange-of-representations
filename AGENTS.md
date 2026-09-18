@@ -1,7 +1,8 @@
 # Project instructions
 
 This repository explores whether a Shared Bridge Representation (SBR) makes
-interpretation assumptions visible and testable. Keep v0.1 limited to that question.
+interpretation assumptions visible and testable. Keep v0.1.1 limited to the baseline
+evaluation scaffold described in `docs/baseline-experiment.md`.
 
 - Require evidence before claims. Separate hypothesis → experiment → result.
 - Never confuse technical completion with semantic alignment.
@@ -15,4 +16,5 @@ interpretation assumptions visible and testable. Keep v0.1 limited to that quest
 - Treat confidence as uncalibrated unless calibration evidence exists.
 - RTSF is an experimental human rating, not an established scientific metric.
 - Keep public artifacts free of private user history, secrets, and machine-specific paths.
-- Run `python -m unittest discover -s tests -v` and `python -m hairbridge` before delivery.
+- Run `python -m unittest discover -s tests -v`, `python -m hairbridge`, and
+  `python -m hairbridge.eval` before delivery.

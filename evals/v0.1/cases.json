@@ -1,0 +1,130 @@
+[
+  {
+    "case_id": "hidden-reference-structure",
+    "case_type": "hidden_intent",
+    "input": "Make mine look like this.",
+    "context": "The user provides a UI screenshot with a substantially different layout and says the current interface still feels wrong after a color pass.",
+    "intended_meaning": "Identify and transfer the reference's relevant layout, hierarchy, density, interaction model, and composition rather than copying only its surface styling.",
+    "expected_failure_classes": ["gestalt loss", "wrong abstraction level"]
+  },
+  {
+    "case_id": "control-reference-colors",
+    "case_type": "literal_control",
+    "input": "Make mine look like this.",
+    "context": "The user explicitly says the current layout and interactions are approved and points only to the reference's navy and amber color palette.",
+    "intended_meaning": "Keep the current structure and interactions, and change only the color palette to match the reference.",
+    "expected_failure_classes": ["over-interpretation", "scope expansion"]
+  },
+  {
+    "case_id": "hidden-slow-progress",
+    "case_type": "hidden_intent",
+    "input": "That's slow.",
+    "context": "Responses arrive quickly, but the current debugging approach has repeated the same checks without narrowing the cause.",
+    "intended_meaning": "The approach is making insufficient progress toward the objective and should be reconsidered.",
+    "expected_failure_classes": ["pragmatic loss"]
+  },
+  {
+    "case_id": "control-slow-latency",
+    "case_type": "literal_control",
+    "input": "That's slow.",
+    "context": "The user timed the endpoint at 4.8 seconds and requires a response under 500 milliseconds; the returned data is correct.",
+    "intended_meaning": "Reduce the endpoint's measured response latency.",
+    "expected_failure_classes": ["over-interpretation", "relevance mismatch"]
+  },
+  {
+    "case_id": "hidden-same-structure",
+    "case_type": "hidden_intent",
+    "input": "It's still the same.",
+    "context": "A redesign changed fonts, colors, borders, and spacing while preserving the same navigation and page composition the user rejected.",
+    "intended_meaning": "The surface changed but the rejected underlying structure did not; revise the structural composition.",
+    "expected_failure_classes": ["over-preservation", "wrong abstraction level"]
+  },
+  {
+    "case_id": "control-same-color",
+    "case_type": "literal_control",
+    "input": "It's still the same.",
+    "context": "The user requested that the primary button change from blue to green, but a fresh screenshot shows the button is still blue; all other design choices are approved.",
+    "intended_meaning": "The requested button color was not changed; change that specific color and preserve everything else.",
+    "expected_failure_classes": ["over-interpretation", "scope expansion"]
+  },
+  {
+    "case_id": "hidden-missing-framing",
+    "case_type": "hidden_intent",
+    "input": "What am I missing?",
+    "context": "The user presents a product strategy with assumptions and evidence and asks for a critical review before choosing features.",
+    "intended_meaning": "Challenge hidden assumptions, blind spots, and whether the strategy frames the right problem.",
+    "expected_failure_classes": ["assumption loss", "wrong abstraction level"]
+  },
+  {
+    "case_id": "control-missing-fact",
+    "case_type": "literal_control",
+    "input": "What am I missing?",
+    "context": "The user is reconciling a four-item packing checklist against four named required items and has already packed three of them.",
+    "intended_meaning": "Identify the one named checklist item that has not been packed.",
+    "expected_failure_classes": ["over-interpretation", "relevance mismatch"]
+  },
+  {
+    "case_id": "hidden-dead-experience",
+    "case_type": "hidden_intent",
+    "input": "This feels dead.",
+    "context": "The interface functions correctly, but the user is reacting to a static presentation with weak hierarchy, feedback, and visual rhythm.",
+    "intended_meaning": "The experience lacks energy and responsiveness; explore hierarchy, rhythm, feedback, and interaction qualities rather than diagnosing an outage.",
+    "expected_failure_classes": ["taste loss", "pragmatic loss"]
+  },
+  {
+    "case_id": "control-dead-service",
+    "case_type": "literal_control",
+    "input": "This is dead.",
+    "context": "A health check reports the worker process as stopped, no heartbeat has been received for ten minutes, and the user is diagnosing availability.",
+    "intended_meaning": "The worker service is not running and needs an availability diagnosis.",
+    "expected_failure_classes": ["over-interpretation", "representation mismatch"]
+  },
+  {
+    "case_id": "hidden-push-direction",
+    "case_type": "hidden_intent",
+    "input": "Push it.",
+    "context": "The user is reviewing a safe but timid visual concept; no repository or deployment action is being discussed.",
+    "intended_meaning": "Take the visual direction further and make the concept more decisive while preserving its objective.",
+    "expected_failure_classes": ["pragmatic loss", "taste loss"]
+  },
+  {
+    "case_id": "control-push-git",
+    "case_type": "literal_control",
+    "input": "Push it.",
+    "context": "The user has reviewed commit 3f28c1a, explicitly approved publishing it, and is discussing the configured Git remote.",
+    "intended_meaning": "Push the approved commit to the configured Git remote.",
+    "expected_failure_classes": ["over-interpretation", "relevance mismatch"]
+  },
+  {
+    "case_id": "hidden-clean-up-model",
+    "case_type": "hidden_intent",
+    "input": "Clean this up.",
+    "context": "The user points to a proposal whose terminology, causal claims, and decision criteria conflict even though the prose is grammatically correct.",
+    "intended_meaning": "Resolve the conceptual inconsistencies and make the proposal's reasoning and decision criteria coherent.",
+    "expected_failure_classes": ["wrong abstraction level", "structure burial"]
+  },
+  {
+    "case_id": "control-clean-up-copy",
+    "case_type": "literal_control",
+    "input": "Clean this up.",
+    "context": "The user explicitly asks for spelling, punctuation, and formatting corrections only and says the meaning and structure are approved.",
+    "intended_meaning": "Correct spelling, punctuation, and formatting while preserving meaning and structure.",
+    "expected_failure_classes": ["over-interpretation", "scope expansion"]
+  },
+  {
+    "case_id": "hidden-doesnt-work-goal",
+    "case_type": "hidden_intent",
+    "input": "This doesn't work.",
+    "context": "The code passes its tests, but the delivered workflow solves a different user task from the one demonstrated in the reference scenario.",
+    "intended_meaning": "The implementation is technically functional but fails the intended workflow and should be reassessed against the actual goal.",
+    "expected_failure_classes": ["pragmatic loss", "relevance mismatch"]
+  },
+  {
+    "case_id": "control-doesnt-work-runtime",
+    "case_type": "literal_control",
+    "input": "This doesn't work.",
+    "context": "Running the documented command exits with status 1 and a reproducible FileNotFoundError before producing output.",
+    "intended_meaning": "The documented command has a concrete runtime failure that must be diagnosed and fixed.",
+    "expected_failure_classes": ["over-interpretation", "causal opacity"]
+  }
+]

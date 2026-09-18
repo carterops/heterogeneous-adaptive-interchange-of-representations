@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/carterops/human-ai-representation-bridge/evals/v0.1/result.schema.json",
+  "title": "HAIR Bridge baseline evaluation result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "condition",
+    "input",
+    "context",
+    "intended_meaning",
+    "reconstruction",
+    "rtsf",
+    "failure_classes",
+    "clarification_required",
+    "correction_depth",
+    "correction",
+    "sbr",
+    "disproof_condition",
+    "uncertainty",
+    "notes"
+  ],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "condition": {"enum": ["direct", "sbr"]},
+    "input": {"type": "string", "minLength": 1},
+    "context": {"type": "string", "minLength": 1},
+    "intended_meaning": {"type": "string", "minLength": 1},
+    "reconstruction": {"type": "string", "minLength": 1},
+    "rtsf": {"type": ["number", "null"], "enum": [0, 0.25, 0.5, 0.75, 1, null]},
+    "failure_classes": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "clarification_required": {"type": "boolean"},
+    "correction_depth": {"enum": ["none", "detail", "scope", "abstraction", "concept"]},
+    "correction": {"type": ["string", "null"]},
+    "sbr": {"anyOf": [{"$ref": "#/$defs/sbr"}, {"type": "null"}]},
+    "disproof_condition": {"type": ["string", "null"]},
+    "uncertainty": {"type": ["string", "null"]},
+    "notes": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"condition": {"const": "direct"}}},
+      "then": {
+        "properties": {
+          "sbr": {"type": "null"},
+          "disproof_condition": {"type": "null"},
+          "uncertainty": {"type": "null"}
+        }
+      },
+      "else": {
+        "properties": {
+          "sbr": {"$ref": "#/$defs/sbr"},
+          "disproof_condition": {"type": "string", "minLength": 1},
+          "uncertainty": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"correction_depth": {"const": "none"}}},
+      "then": {"properties": {"correction": {"type": "null"}}},
+      "else": {"properties": {"correction": {"type": "string", "minLength": 1}}}
+    }
+  ],
+  "$defs": {
+    "nonemptyString": {"type": "string", "minLength": 1},
+    "stringArray": {"type": "array", "items": {"$ref": "#/$defs/nonemptyString"}},
+    "sbr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_input",
+        "literal_ask",
+        "inferred_intent",
+        "vision",
+        "pragmatic_meaning",
+        "underlying_assumption",
+        "domain",
+        "abstraction_level",
+        "rework_mode",
+        "taste_hypotheses",
+        "confidence",
+        "ambiguity_reasons",
+        "missing_information",
+        "wrong_but_literal_outcome",
+        "what_would_prove_this_wrong",
+        "human_readable_reconstruction",
+        "failure_classes"
+      ],
+      "properties": {
+        "raw_input": {"$ref": "#/$defs/nonemptyString"},
+        "literal_ask": {"$ref": "#/$defs/nonemptyString"},
+        "inferred_intent": {"$ref": "#/$defs/nonemptyString"},
+        "vision": {"$ref": "#/$defs/nonemptyString"},
+        "pragmatic_meaning": {"$ref": "#/$defs/nonemptyString"},
+        "underlying_assumption": {"$ref": "#/$defs/nonemptyString"},
+        "domain": {"$ref": "#/$defs/nonemptyString"},
+        "abstraction_level": {"$ref": "#/$defs/nonemptyString"},
+        "rework_mode": {"$ref": "#/$defs/nonemptyString"},
+        "taste_hypotheses": {"$ref": "#/$defs/stringArray"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "ambiguity_reasons": {"$ref": "#/$defs/stringArray"},
+        "missing_information": {"$ref": "#/$defs/stringArray"},
+        "wrong_but_literal_outcome": {"$ref": "#/$defs/nonemptyString"},
+        "what_would_prove_this_wrong": {"$ref": "#/$defs/nonemptyString"},
+        "human_readable_reconstruction": {"$ref": "#/$defs/nonemptyString"},
+        "failure_classes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/nonemptyString"}
+        }
+      }
+    }
+  }
+}
