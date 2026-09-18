@@ -1,0 +1,124 @@
+[
+  {
+    "id": "reference",
+    "context": "User provides a UI screenshot with substantially different structure.",
+    "bridge": {
+      "raw_input": "Make mine look like this.",
+      "literal_ask": "Make the current UI resemble the reference.",
+      "inferred_intent": "The reference may specify structure as well as styling.",
+      "vision": "A UI with the intended hierarchy and composition.",
+      "pragmatic_meaning": "Use the reference to discover which design qualities matter.",
+      "underlying_assumption": "The user may value the reference layout more than its surface styling.",
+      "domain": "UI design",
+      "abstraction_level": "structural composition",
+      "rework_mode": "potential structural transformation",
+      "taste_hypotheses": [
+        "The reference may express a preference for its density and hierarchy."
+      ],
+      "confidence": 0.65,
+      "ambiguity_reasons": [
+        "The intended dimensions of similarity are unspecified."
+      ],
+      "missing_information": [
+        "Which layout, hierarchy, density, and interaction qualities should transfer?",
+        "Which existing capabilities must be preserved?"
+      ],
+      "wrong_but_literal_outcome": "Copy colors, typography, spacing, and cards while preserving an incompatible layout.",
+      "what_would_prove_this_wrong": "The user confirms that only surface styling should change.",
+      "human_readable_reconstruction": "You may want the layout, hierarchy, density, and interaction model to resemble the reference. We should identify which structural qualities matter.",
+      "failure_classes": [
+        "gestalt loss",
+        "wrong abstraction level"
+      ]
+    }
+  },
+  {
+    "id": "slow",
+    "context": "The user comments on an ongoing approach; no timing measurements are supplied.",
+    "bridge": {
+      "raw_input": "That's slow.",
+      "literal_ask": "Address slowness.",
+      "inferred_intent": "The approach may be producing insufficient progress toward the objective.",
+      "vision": "Meaningful progress toward the objective.",
+      "pragmatic_meaning": "Question the effectiveness of the approach, not only elapsed computation time.",
+      "underlying_assumption": "Slow may refer to progress rather than response latency.",
+      "domain": "workflow",
+      "abstraction_level": "strategy",
+      "rework_mode": "reassess approach",
+      "taste_hypotheses": [],
+      "confidence": 0.5,
+      "ambiguity_reasons": [
+        "Could mean computation latency, interaction friction, or insufficient progress."
+      ],
+      "missing_information": [
+        "What feels slow: response time, number of steps, or progress toward the goal?"
+      ],
+      "wrong_but_literal_outcome": "Optimize computation latency while retaining an ineffective approach.",
+      "what_would_prove_this_wrong": "The user identifies measured computation latency as the sole problem.",
+      "human_readable_reconstruction": "You may mean that this approach is not getting us closer to the goal fast enough. I need to distinguish that from a response-time problem.",
+      "failure_classes": [
+        "pragmatic loss"
+      ]
+    }
+  },
+  {
+    "id": "same",
+    "context": "A revision changed surface attributes while retaining the underlying structure.",
+    "bridge": {
+      "raw_input": "It's still the same.",
+      "literal_ask": "Make it meaningfully different.",
+      "inferred_intent": "The structural change the user expected may not have happened.",
+      "vision": "A revision that changes the relevant underlying structure.",
+      "pragmatic_meaning": "Reject another cosmetic iteration.",
+      "underlying_assumption": "The unchanged structure may be the source of dissatisfaction.",
+      "domain": "design revision",
+      "abstraction_level": "underlying structure",
+      "rework_mode": "potential structural transformation",
+      "taste_hypotheses": [],
+      "confidence": 0.7,
+      "ambiguity_reasons": [
+        "The intended structural difference has not been specified."
+      ],
+      "missing_information": [
+        "Which structural property should change?",
+        "What must survive the revision?"
+      ],
+      "wrong_but_literal_outcome": "Make more cosmetic changes to the same structure.",
+      "what_would_prove_this_wrong": "The user identifies a surface detail as the only remaining issue.",
+      "human_readable_reconstruction": "The styling changed, but the structure may still be what you wanted replaced. We should identify the structural difference you expected.",
+      "failure_classes": [
+        "over-preservation",
+        "wrong abstraction level"
+      ]
+    }
+  },
+  {
+    "id": "missing",
+    "context": "The user asks for critique of the current problem model.",
+    "bridge": {
+      "raw_input": "What am I missing?",
+      "literal_ask": "Identify omissions.",
+      "inferred_intent": "Challenge assumptions, blind spots, and the problem framing.",
+      "vision": "A model that withstands critical examination.",
+      "pragmatic_meaning": "Invite scrutiny of the reasoning behind the model.",
+      "underlying_assumption": "The user may be seeking a challenge to the model rather than more features.",
+      "domain": "problem framing",
+      "abstraction_level": "assumptions and framing",
+      "rework_mode": "critical review",
+      "taste_hypotheses": [],
+      "confidence": 0.7,
+      "ambiguity_reasons": [
+        "Could instead ask for a specific factual omission."
+      ],
+      "missing_information": [
+        "What is the current model, its evidence, and its intended outcome?"
+      ],
+      "wrong_but_literal_outcome": "Generate a generic list of additional features.",
+      "what_would_prove_this_wrong": "The user requests a concrete missing item and explicitly excludes a framing critique.",
+      "human_readable_reconstruction": "You may want me to challenge the assumptions and blind spots in the current model, including whether it frames the right problem.",
+      "failure_classes": [
+        "assumption loss"
+      ]
+    }
+  }
+]
