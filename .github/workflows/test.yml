@@ -21,3 +21,5 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python -m hairbridge
       - run: python -m hairbridge.eval
+      - run: python examples/specialist_exchange.py
+      - run: python examples/round_trip.py

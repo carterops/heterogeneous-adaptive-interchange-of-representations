@@ -1,20 +1,21 @@
 # Project instructions
 
-This repository explores whether a Shared Bridge Representation (SBR) makes
-interpretation assumptions visible and testable. Keep v0.1.1 limited to the baseline
-evaluation scaffold described in `docs/baseline-experiment.md`.
+This repository provides inspectable representation contracts for human-intent
+interpretation and specialist communication. The current public package is v0.2.0.
+The broader intent-driven Factory runtime lives outside this repository.
 
-- Require evidence before claims. Separate hypothesis → experiment → result.
-- Never confuse technical completion with semantic alignment.
-- Preserve regression cases for previously discovered interpretation failures.
-- Avoid unnecessary architecture, agents, orchestration, and heavy dependencies.
-- Prefer falsifiable experiments; record what would disprove each interpretation.
-- Update documentation and examples when terminology changes.
-- Separate human-intent inference from product execution. An inference grants no authority to act.
-- Current evidence overrides prior assumptions. Preserve ambiguity when context is missing.
-- Mark fixture behavior explicitly; never present scripted output as semantic understanding.
-- Treat confidence as uncalibrated unless calibration evidence exists.
-- RTSF is an experimental human rating, not an established scientific metric.
-- Keep public artifacts free of private user history, secrets, and machine-specific paths.
-- Run `python -m unittest discover -s tests -v`, `python -m hairbridge`, and
-  `python -m hairbridge.eval` before delivery.
+- Keep native specialist artifacts and recipient renderings distinct.
+- H-A-I-R carries an authority reference but never grants or expands authority.
+- Acknowledgement records the recipient's actual reading; it is not proof of truth.
+- Separate hypothesis, experiment, observation, and measured result.
+- Never confuse a software test pass with semantic alignment or product quality.
+- Preserve regression cases for discovered interpretation and protocol failures.
+- Keep historical v0.1.1 evaluation fixtures intact and labeled as authored cases.
+- Mark scripted behavior explicitly; never present it as general understanding.
+- Treat confidence and RTSF as uncalibrated unless human evidence supports them.
+- Keep public artifacts free of private user history, secrets, and machine paths.
+- Add dependencies or orchestration only for a demonstrated capability gap. Prefer a
+  small portable contract that an owning runtime can adopt.
+- Update the README, protocol documentation, and examples when the wire format changes.
+- Before delivery run `python -m unittest discover -s tests -v`,
+  `python -m hairbridge`, `python -m hairbridge.eval`, and both examples.

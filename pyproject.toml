@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "human-ai-representation-bridge"
-version = "0.1.1"
-description = "An experimental intermediate representation for making human–AI interpretation assumptions testable."
+version = "0.2.0"
+description = "Inspectable human intent and representation-preserving messages for specialist teams."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
