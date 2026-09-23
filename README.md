@@ -1,31 +1,75 @@
 # H-A-I-R
 
-**Heterogeneous Adaptive Interchange of Representations** (H-A-I-R) is a small
-Python library for representation-preserving communication between people and AI
-specialists that do not naturally reason in the same form. It preserves the sender's
-native artifact, adds a recipient-adapted rendering, and records whether the recipient
-understood it.
+**Heterogeneous Adaptive Interchange of Representations**
 
-H-A-I-R began as the **Human–AI Representation Bridge**. Human↔AI intent translation
-remains the first application, but it is no longer the definition of the project. The
-broader research direction is an **adaptive interoperability layer for heterogeneous
-representations**: participants keep their native representations while the
-communication layer adapts between them instead of forcing everyone into one shared
-schema.
+H-A-I-R is a research project and reference implementation for a specific problem:
+**different AI specialists can each be good at their own job while still losing
+important meaning when work moves between them.**
 
-The project is moving toward **intent-driven specialist teams**: a person states the
-outcome and hard limits once; relevant specialists work in their own representations;
-H-A-I-R carries meaning between them; evidence supports verification; the person
-decides on release. This repository provides representation contracts for that
-direction. It is not a team orchestrator or an autonomous agent runtime.
+Instead of forcing every specialist into one shared representation, H-A-I-R preserves
+the sender's native artifact, creates a representation adapted to the recipient, and
+records how the recipient understood it.
 
 > **Core law:** H-A-I-R adapts the communication layer to the participants; it does
 > not force the participants to adapt to the communication layer.
 
-The repository and Python distribution currently retain the historical
-`human-ai-representation-bridge` identifier for continuity; the project name and
-research definition are H-A-I-R — Heterogeneous Adaptive Interchange of
-Representations.
+## 30-second version
+
+**What is this?**  
+A representation-preserving interchange layer for heterogeneous AI specialists and
+human↔AI collaboration.
+
+**Why does it matter?**  
+As agent systems become more specialized, the human can become the coordination
+bottleneck: carrying context, translating between specialists, catching
+misunderstandings, routing failures, and repeatedly explaining what changed. H-A-I-R
+tests whether that translation burden can move into the system without flattening the
+specialists' native reasoning.
+
+**What has actually been built?**  
+This repository implements H-A-I-R message envelopes, deterministic message identity,
+recipient-specific renderings, acknowledgements, evidence references, and an earlier
+human-intent representation experiment. H-A-I-R has also been integrated into a
+separate intent-driven specialist runtime used for controlled runtime experiments.
+
+**What evidence exists right now?**  
+A public Runtime 3 evidence package contains the synthetic pilot artifacts and a local
+verifier. In that pilot, the runtime formed a **20-member capability graph**, recorded
+**29 chained events**, required **0 human interruptions or corrections in the
+fixture**, completed **2 internal repair loops**, caught **1 synthetic regression
+before human review**, discovered **1 emergent requirement**, resolved **1 specialist
+disagreement**, and recorded **2 H-A-I-R exchanges with recipient acknowledgements**.
+
+Those results are evidence of **runtime control-plane behavior**, not proof that 20
+independent agents all executed work or that H-A-I-R improves final product quality.
+The pilot explicitly records final product intent fidelity and real product quality as
+`NOT_RUN`, and release remained unauthorized.
+
+→ [Inspect the Runtime 3 evidence](evidence/runtime-3/README.md)  
+→ [Inspect the machine-readable pilot result](evidence/runtime-3/pilot-result.json)  
+→ Run `python evidence/runtime-3/verify.py` locally to verify the public evidence package.
+
+## Research direction
+
+H-A-I-R began as the **Human–AI Representation Bridge**. Human↔AI intent translation
+remains an application, but it is no longer the definition of the project.
+
+The broader direction is an **adaptive interoperability layer for heterogeneous
+representations**: participants keep their native representations while the
+communication layer adapts between them.
+
+The larger runtime experiment asks a related systems question:
+
+> **How much coordination, review, repair, and evidence management can an AI
+> specialist organization absorb while the human remains responsible for intent,
+> hard constraints, and final authority?**
+
+This repository provides the representation contracts for that work. It is not itself
+the team orchestrator or autonomous runtime.
+
+The GitHub repository now uses the H-A-I-R project name. The Python distribution
+currently retains the historical `human-ai-representation-bridge` identifier for
+compatibility until a deliberate package migration is performed.
 
 ## What is implemented
 
@@ -43,10 +87,11 @@ intent-driven Factory runtime. Compatibility means the same envelope shape and
 identity calculation. The Factory remains responsible for task authority, tool
 admission, evidence, promotion, and release decisions.
 
-The [Runtime 3 implementation evidence](evidence/runtime-3/README.md) now includes
+The [Runtime 3 implementation evidence](evidence/runtime-3/README.md) includes
 the synthetic pilot's original event chain and result artifact, a local verifier,
-component test counts, and the unresolved real-project findings. It reports product
-fidelity and quality as `NOT_RUN`.
+component test counts, and unresolved real-project findings. The evidence package is
+deliberately scoped: it establishes recorded runtime behavior and artifact integrity,
+while product fidelity and real product quality remain `NOT_RUN`.
 
 ## Specialist exchange
 
