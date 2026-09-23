@@ -1,49 +1,133 @@
 # H-A-I-R
 
-**Heterogeneous Adaptive Interchange of Representations**
+**Heterogeneous Adaptive Interchange of Representations**  
+*Representation interchange for intent-driven AI specialist organizations.*
 
-H-A-I-R is a research project and reference implementation for a specific problem:
-**different AI specialists can each be good at their own job while still losing
-important meaning when work moves between them.**
+H-A-I-R is one mechanism inside a larger research program:
 
-Instead of forcing every specialist into one shared representation, H-A-I-R preserves
-the sender's native artifact, creates a representation adapted to the recipient, and
-records how the recipient understood it.
+> **Can a human provide intent, constraints, and final authority while an AI
+> specialist organization absorbs more of the coordination, implementation, review,
+> repair, and verification work required to produce a trustworthy result?**
+
+The project started with a narrower observation: different AI specialists can each be
+good at their own job while still losing important meaning when work moves between
+them. H-A-I-R addresses that communication problem.
+
+Instead of forcing every participant into one shared representation, H-A-I-R preserves
+the sender's native artifact, creates a recipient-adapted rendering, and records how
+the recipient understood it.
 
 > **Core law:** H-A-I-R adapts the communication layer to the participants; it does
 > not force the participants to adapt to the communication layer.
 
 ## 30-second version
 
-**What is this?**  
+**What is H-A-I-R?**  
 A representation-preserving interchange layer for heterogeneous AI specialists and
 human↔AI collaboration.
 
-**Why does it matter?**  
-As agent systems become more specialized, the human can become the coordination
-bottleneck: carrying context, translating between specialists, catching
-misunderstandings, routing failures, and repeatedly explaining what changed. H-A-I-R
-tests whether that translation burden can move into the system without flattening the
-specialists' native reasoning.
+**What is the larger idea?**  
+An intent-driven AI organization in which the human owns purpose, hard constraints,
+irreversible decisions, and final authority while the system handles as much routine
+specialist coordination, creation, review, repair, regression checking, and evidence
+collection as it can justify.
 
-**What has actually been built?**  
-This repository implements H-A-I-R message envelopes, deterministic message identity,
-recipient-specific renderings, acknowledgements, evidence references, and an earlier
-human-intent representation experiment. H-A-I-R has also been integrated into a
-separate intent-driven specialist runtime used for controlled runtime experiments.
+**Why does this matter?**  
+As agent systems become more specialized, the human can become the organization's
+message bus: carrying context, translating between specialists, reviewing their work,
+finding regressions, routing failures, and repeatedly explaining what changed. The
+research program asks how much of that process-management burden can move into the
+system without weakening intent fidelity, evidence, or human authority.
 
-**What evidence exists right now?**  
-A public Runtime 3 evidence package contains the synthetic pilot artifacts and a local
-verifier. In that pilot, the runtime formed a **20-member capability graph**, recorded
-**29 chained events**, required **0 human interruptions or corrections in the
-fixture**, completed **2 internal repair loops**, caught **1 synthetic regression
-before human review**, discovered **1 emergent requirement**, resolved **1 specialist
-disagreement**, and recorded **2 H-A-I-R exchanges with recipient acknowledgements**.
+**What is in this repository?**  
+The H-A-I-R communication layer, its message/acknowledgement contracts, an earlier
+human-intent representation experiment, and public evidence from H-A-I-R operating
+inside a separate specialist runtime.
 
-Those results are evidence of **runtime control-plane behavior**, not proof that 20
-independent agents all executed work or that H-A-I-R improves final product quality.
-The pilot explicitly records final product intent fidelity and real product quality as
-`NOT_RUN`, and release remained unauthorized.
+## The larger system
+
+H-A-I-R is **not** the whole runtime. It is the representation/interchange layer used
+inside a broader specialist organization.
+
+```text
+                    HUMAN
+         intent • constraints • authority
+                      │
+                      ▼
+                Intent Contract
+                      │
+                      ▼
+            Runtime / Orchestrator
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+      Specialist   Specialist   Specialist
+          │           │           │
+          └─────── H-A-I-R ───────┘
+          representation interchange
+                      │
+                      ▼
+           Build / Review / Repair
+                      │
+                      ▼
+                Evidence Layer
+                      │
+                      ▼
+             Promotion Decision
+                      │
+                      ▼
+                    HUMAN
+                final authority
+```
+
+The intended division of responsibility is:
+
+- **Human:** purpose, desired outcome, hard constraints, non-goals, irreversible
+  decisions, and final release authority.
+- **Runtime:** team formation, routing, branching, repair coordination, checkpoints,
+  and escalation.
+- **Specialists:** domain reasoning, architecture, implementation, visual direction,
+  testing, security, review, and other problem-specific work.
+- **H-A-I-R:** preserve native representations and translate them for the recipient
+  without creating authority or deciding who is correct.
+- **Evidence layer:** record what happened, what was tested, what failed, what was
+  repaired, and which claims are currently supported.
+
+## Current research questions
+
+1. Can heterogeneous specialists preserve more useful meaning through adaptive,
+   recipient-specific representations?
+2. Can explicit acknowledgement expose communication failures before they become
+   implementation failures?
+3. How much specialist coordination can move from the human into the runtime?
+4. Can independent review and bounded repair loops reduce human QA burden without
+   allowing builders to self-certify?
+5. What is the minimum sufficient specialist organization for a given problem?
+6. When does specialization outperform a capable single agent, and when is it
+   unnecessary overhead?
+7. Can verified failures and repairs become reusable organizational memory without
+   fossilizing bad assumptions?
+8. How much human process-management can be removed while preserving intent,
+   evidence discipline, and final human authority?
+
+## What has actually been observed so far?
+
+A public Runtime 3 evidence package contains synthetic pilot artifacts and a local
+verifier. In that pilot, the runtime:
+
+- formed a **20-member capability graph**;
+- recorded **29 chained events**;
+- required **0 human interruptions and 0 human corrections in the fixture**;
+- completed **2 internal repair loops**;
+- caught **1 synthetic regression before human review**;
+- discovered **1 emergent requirement**;
+- resolved **1 specialist disagreement**; and
+- recorded **2 H-A-I-R exchanges with recipient renderings and acknowledgements**.
+
+Those measurements establish **recorded control-plane behavior in that synthetic
+pilot**. They do **not** establish that 20 independent agents all executed work, that
+H-A-I-R generally improves final product quality, that the runtime reduces cost, or
+that the architecture is superior across domains. Final product intent fidelity and
+real product quality were recorded as `NOT_RUN`, and release remained unauthorized.
 
 → [Inspect the Runtime 3 evidence](evidence/runtime-3/README.md)  
 → [Inspect the machine-readable pilot result](evidence/runtime-3/pilot-result.json)  
@@ -55,17 +139,9 @@ H-A-I-R began as the **Human–AI Representation Bridge**. Human↔AI intent tra
 remains an application, but it is no longer the definition of the project.
 
 The broader direction is an **adaptive interoperability layer for heterogeneous
-representations**: participants keep their native representations while the
-communication layer adapts between them.
-
-The larger runtime experiment asks a related systems question:
-
-> **How much coordination, review, repair, and evidence management can an AI
-> specialist organization absorb while the human remains responsible for intent,
-> hard constraints, and final authority?**
-
-This repository provides the representation contracts for that work. It is not itself
-the team orchestrator or autonomous runtime.
+representations**. The larger research program studies how that layer interacts with
+specialist formation, independent review, bounded repair, regression memory,
+evidence-gated promotion, and human authority.
 
 The GitHub repository now uses the H-A-I-R project name. The Python distribution
 currently retains the historical `human-ai-representation-bridge` identifier for
@@ -82,9 +158,9 @@ compatibility until a deliberate package migration is performed.
 | 16-case direct-versus-bridge evaluation scaffold | Implemented; no human fidelity results measured |
 | Automatic specialist selection, tool execution, evidence verification, and release | Outside this library |
 
-The message format is compatible with the H-A-I-R exchange used by Astra's
-intent-driven Factory runtime. Compatibility means the same envelope shape and
-identity calculation. The Factory remains responsible for task authority, tool
+The message format is compatible with the H-A-I-R exchange used by the separate
+intent-driven specialist runtime. Compatibility means the same envelope shape and
+identity calculation. The runtime remains responsible for task authority, tool
 admission, evidence, promotion, and release decisions.
 
 The [Runtime 3 implementation evidence](evidence/runtime-3/README.md) includes
@@ -182,9 +258,11 @@ setuptools as a build dependency.
 - Missing or failed real-world evidence must stay visible as `NOT_RUN`, `BLOCKED`, or
   `FAIL`; fixture checks are not product validation.
 
-Next work is to measure semantic fidelity with originating humans, test exchanges
-across more specialist representations, and evaluate whether explicit acknowledgement
-reduces costly misunderstandings. Keep examples synthetic and avoid private project
-history in public fixtures.
+Next work is to test H-A-I-R and the larger specialist-organization hypothesis across
+unrelated tasks, compare against capable single-agent and raw multi-agent baselines,
+measure human intervention and repair burden, study the minimum useful specialist
+organization for a task, and evaluate whether explicit acknowledgement reduces costly
+misunderstandings. Keep public examples synthetic or sanitized and avoid private
+project history in public fixtures.
 
 Licensed under the [Apache License 2.0](LICENSE).
