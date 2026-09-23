@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "human-ai-representation-bridge"
 version = "0.2.0"
-description = "Inspectable human intent and representation-preserving messages for specialist teams."
+description = "H-A-I-R: adaptive, representation-preserving interchange for heterogeneous specialist teams."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
