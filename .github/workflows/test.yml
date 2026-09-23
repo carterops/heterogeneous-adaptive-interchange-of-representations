@@ -23,3 +23,4 @@ jobs:
       - run: python -m hairbridge.eval
       - run: python examples/specialist_exchange.py
       - run: python examples/round_trip.py
+      - run: python evidence/runtime-3/verify.py

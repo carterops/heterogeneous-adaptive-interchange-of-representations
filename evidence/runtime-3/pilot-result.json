@@ -1,0 +1,912 @@
+{
+  "team": {
+    "schemaVersion": 1,
+    "runtimeVersion": "3.0.0",
+    "teamId": "team-714ace8dcb537f4d",
+    "registryVersion": "3.0.0",
+    "intentHash": "94128850a8d992c4ed2e2782f9b822e5a1312cdf3115bf32abae9bab38d773c2",
+    "signals": [
+      "accessibility",
+      "architecture",
+      "backend",
+      "data",
+      "external-data",
+      "financial",
+      "frontend",
+      "integration",
+      "product",
+      "security",
+      "sensitive",
+      "visual",
+      "workflow"
+    ],
+    "members": [
+      {
+        "id": "intent-guardian",
+        "mission": "Protect human intent and red lines while allowing delegated implementation choices.",
+        "nativeRepresentation": "intent outcomes, non-goals, red lines, and tradeoffs",
+        "signals": [
+          "always"
+        ],
+        "dependsOn": [],
+        "agentType": "carter_interpreter",
+        "skill": "carter-bridge-orchestrator",
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "interpret-intent",
+          "constraints": [
+            "may not change intent",
+            "may not authorize release"
+          ]
+        },
+        "activities": [
+          "intent-integrity-review"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "runtime-orchestrator",
+        "mission": "Form the smallest applicable specialist graph and coordinate isolated creation and promotion.",
+        "nativeRepresentation": "capability graph, branch state, repair routing, and checkpoints",
+        "signals": [
+          "always"
+        ],
+        "dependsOn": [
+          "intent-guardian"
+        ],
+        "agentType": "carter_workflow_director",
+        "skill": "astra-harness",
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "coordinate-runtime",
+          "constraints": [
+            "may route but may not create authority",
+            "may not self-approve promotion"
+          ]
+        },
+        "activities": [
+          "team-formation",
+          "branch-coordination",
+          "repair-routing"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "product-strategist",
+        "mission": "Turn product intent into testable product questions and candidate directions.",
+        "nativeRepresentation": "product hypotheses, user outcomes, and option tradeoffs",
+        "signals": [
+          "product"
+        ],
+        "dependsOn": [
+          "runtime-orchestrator"
+        ],
+        "agentType": "carter_interpreter",
+        "skill": "carter-bridge-orchestrator",
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "product-direction",
+          "constraints": [
+            "remain inside must-have outcomes and non-goals"
+          ]
+        },
+        "activities": [
+          "product-framing",
+          "candidate-comparison"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "financial-domain-specialist",
+        "mission": "Represent operational finance meaning and P&L invariants.",
+        "nativeRepresentation": "financial periods, sources, assumptions, reconciliation, and correction workflows",
+        "signals": [
+          "financial"
+        ],
+        "dependsOn": [
+          "runtime-orchestrator"
+        ],
+        "agentType": "default",
+        "skill": null,
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "domain-semantics",
+          "constraints": [
+            "project-scoped capability",
+            "no production data mutation"
+          ]
+        },
+        "activities": [
+          "domain-modeling",
+          "financial-invariant-review"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "architecture-specialist",
+        "mission": "Evolve system boundaries inside the Intent Contract.",
+        "nativeRepresentation": "modules, interfaces, state transitions, and failure modes",
+        "signals": [
+          "architecture",
+          "backend",
+          "data",
+          "integration"
+        ],
+        "dependsOn": [
+          "runtime-orchestrator"
+        ],
+        "agentType": "carter_solution_architect",
+        "skill": "enforce-architecture-contracts",
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "candidate-architecture",
+          "constraints": [
+            "must preserve hard constraints",
+            "promotion requires verified current contract"
+          ]
+        },
+        "activities": [
+          "architecture-design",
+          "contract-verification"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "data-specialist",
+        "mission": "Own data meaning, lineage, persistence, and reconciliation design.",
+        "nativeRepresentation": "entities, invariants, lineage, transactions, and temporal semantics",
+        "signals": [
+          "data",
+          "financial"
+        ],
+        "dependsOn": [
+          "runtime-orchestrator"
+        ],
+        "agentType": "carter_solution_architect",
+        "skill": "enforce-architecture-contracts",
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "data-design",
+          "constraints": [
+            "no new sensitive class or external destination without Level 4 decision"
+          ]
+        },
+        "activities": [
+          "data-contract-design",
+          "lineage-review"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "backend-specialist",
+        "mission": "Build services and state transitions inside delegated architecture.",
+        "nativeRepresentation": "APIs, transactions, persistence, and failure handling",
+        "signals": [
+          "backend",
+          "data",
+          "financial"
+        ],
+        "dependsOn": [
+          "architecture-specialist",
+          "data-specialist"
+        ],
+        "agentType": "carter_code_builder",
+        "skill": "build-carter-code",
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "backend-implementation",
+          "constraints": [
+            "candidate isolation",
+            "no production mutation"
+          ]
+        },
+        "activities": [
+          "backend-build",
+          "failure-repair"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "visual-scout",
+        "mission": "Gather and decompose current relevant visual references with provenance.",
+        "nativeRepresentation": "screenshots, annotated regions, visual grammar, and interaction patterns",
+        "signals": [
+          "visual"
+        ],
+        "dependsOn": [
+          "runtime-orchestrator"
+        ],
+        "agentType": "default",
+        "skill": "visual-scout-reference-curator",
+        "tools": [
+          "visual-reference-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "reference-research",
+          "constraints": [
+            "references are evidence not authority",
+            "respect source licensing"
+          ]
+        },
+        "activities": [
+          "reference-discovery",
+          "reference-decomposition"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "visual-director",
+        "mission": "Set a coherent visual direction inside human preferences.",
+        "nativeRepresentation": "hierarchy, composition, rhythm, density, and visual language",
+        "signals": [
+          "visual"
+        ],
+        "dependsOn": [
+          "visual-scout",
+          "product-strategist"
+        ],
+        "agentType": "carter_taste_critic",
+        "skill": "carter-ui",
+        "tools": [
+          "visual-reference-toolchain",
+          "render-inspection-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "visual-direction",
+          "constraints": [
+            "taste evidence remains conditional",
+            "may not change product intent"
+          ]
+        },
+        "activities": [
+          "visual-direction",
+          "composition-review"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "workflow-specialist",
+        "mission": "Represent user workflows, exceptions, and operating consequences.",
+        "nativeRepresentation": "tasks, journeys, exception paths, and operator controls",
+        "signals": [
+          "visual",
+          "workflow"
+        ],
+        "dependsOn": [
+          "runtime-orchestrator"
+        ],
+        "agentType": "carter_interpreter",
+        "skill": "carter-bridge-orchestrator",
+        "tools": [
+          "interaction-probe-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "workflow-design",
+          "constraints": [
+            "preserve delegated authorization boundaries"
+          ]
+        },
+        "activities": [
+          "workflow-modeling",
+          "exception-design"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "gestalt-director",
+        "mission": "Judge whether the whole interface feels like one intentional product.",
+        "nativeRepresentation": "global coherence, product identity, hierarchy, composition, and information shape",
+        "signals": [
+          "visual"
+        ],
+        "dependsOn": [
+          "visual-director",
+          "workflow-specialist"
+        ],
+        "agentType": "carter_taste_critic",
+        "skill": "product-art-director",
+        "tools": [
+          "render-inspection-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "holistic-product-critique",
+          "constraints": [
+            "read-only independent review",
+            "no release authority",
+            "no implementation"
+          ]
+        },
+        "activities": [
+          "design-critique",
+          "post-render-gestalt-review"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "frontend-specialist",
+        "mission": "Build and repair the interactive product surface.",
+        "nativeRepresentation": "components, interaction states, layout constraints, and rendered behavior",
+        "signals": [
+          "frontend",
+          "visual"
+        ],
+        "dependsOn": [
+          "visual-director",
+          "workflow-specialist"
+        ],
+        "agentType": "carter_ui_builder",
+        "skill": "carter-ui",
+        "tools": [
+          "render-inspection-toolchain",
+          "interaction-probe-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "frontend-implementation",
+          "constraints": [
+            "candidate isolation",
+            "do not self-review promotion"
+          ]
+        },
+        "activities": [
+          "frontend-build",
+          "render-repair",
+          "interaction-repair"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "visual-reviewer",
+        "mission": "Independently inspect responsive renders and reference fidelity.",
+        "nativeRepresentation": "render comparisons, viewport findings, fidelity deltas, and usability observations",
+        "signals": [
+          "visual"
+        ],
+        "dependsOn": [
+          "frontend-specialist"
+        ],
+        "agentType": "carter_visual_reviewer",
+        "skill": "carter-ui",
+        "tools": [
+          "render-inspection-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "visual-verification",
+          "constraints": [
+            "read-only independent review",
+            "claim-local promotion effect"
+          ]
+        },
+        "activities": [
+          "responsive-render-review",
+          "reference-fidelity-review"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "interaction-auditor",
+        "mission": "Directly probe critical interactions and failure states.",
+        "nativeRepresentation": "actions, observed states, recordings, failures, and reproducible paths",
+        "signals": [
+          "visual",
+          "frontend",
+          "workflow"
+        ],
+        "dependsOn": [
+          "frontend-specialist"
+        ],
+        "agentType": "carter_acceptance_tester",
+        "skill": "carter-ui",
+        "tools": [
+          "interaction-probe-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "interaction-verification",
+          "constraints": [
+            "read-only test surface",
+            "no production data"
+          ]
+        },
+        "activities": [
+          "critical-flow-probe",
+          "failure-state-probe"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "accessibility-specialist",
+        "mission": "Inspect meaningful interfaces for accessible operation.",
+        "nativeRepresentation": "semantics, focus order, contrast, keyboard paths, and assistive behavior",
+        "signals": [
+          "accessibility",
+          "visual"
+        ],
+        "dependsOn": [
+          "frontend-specialist"
+        ],
+        "agentType": "carter_visual_reviewer",
+        "skill": "carter-ui",
+        "tools": [
+          "render-inspection-toolchain",
+          "interaction-probe-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "accessibility-verification",
+          "constraints": [
+            "read-only independent review",
+            "claim-local promotion effect"
+          ]
+        },
+        "activities": [
+          "semantic-review",
+          "keyboard-and-contrast-review"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "security-specialist",
+        "mission": "Inspect trust boundaries and stop hard security invariant violations.",
+        "nativeRepresentation": "authority, trust boundaries, attack surface, and misuse cases",
+        "signals": [
+          "security",
+          "sensitive",
+          "authentication",
+          "external-data"
+        ],
+        "dependsOn": [
+          "runtime-orchestrator"
+        ],
+        "agentType": "carter_gate_reviewer",
+        "skill": "carter-audit",
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "security-verification",
+          "constraints": [
+            "read-only gate review",
+            "Level 3 containment is action-local"
+          ]
+        },
+        "activities": [
+          "threat-review",
+          "security-gate"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "test-designer",
+        "mission": "Design reproducible behavioral and failure probes.",
+        "nativeRepresentation": "states, actions, assertions, fixtures, and failure evidence",
+        "signals": [
+          "always"
+        ],
+        "dependsOn": [
+          "runtime-orchestrator"
+        ],
+        "agentType": "carter_acceptance_tester",
+        "skill": "carter-completion-gate",
+        "tools": [
+          "interaction-probe-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "test-design",
+          "constraints": [
+            "synthetic fixtures unless project authority says otherwise"
+          ]
+        },
+        "activities": [
+          "test-design",
+          "failure-injection"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "regression-keeper",
+        "mission": "Retain and selectively replay verified repaired invariants.",
+        "nativeRepresentation": "invariants, artifact scope, probes, and replay results",
+        "signals": [
+          "product",
+          "frontend",
+          "backend",
+          "data"
+        ],
+        "dependsOn": [
+          "test-designer"
+        ],
+        "agentType": "carter_acceptance_tester",
+        "skill": "carter-completion-gate",
+        "tools": [
+          "interaction-probe-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "regression-verification",
+          "constraints": [
+            "selective invalidation",
+            "no stale pass reuse"
+          ]
+        },
+        "activities": [
+          "regression-recording",
+          "selective-replay"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "evidence-auditor",
+        "mission": "Audit whether promotion claims are supported by competent evidence.",
+        "nativeRepresentation": "claims, artifact identity, provenance, competency, and invalidation",
+        "signals": [
+          "always"
+        ],
+        "dependsOn": [
+          "test-designer"
+        ],
+        "agentType": "carter_gate_reviewer",
+        "skill": "carter-audit",
+        "tools": [
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "evidence-verification",
+          "constraints": [
+            "independent review",
+            "cannot manufacture pass"
+          ]
+        },
+        "activities": [
+          "evidence-audit",
+          "promotion-checkpoint-review"
+        ],
+        "authorityGranted": false
+      },
+      {
+        "id": "final-product-auditor",
+        "mission": "Independently test final intent fidelity and product completeness.",
+        "nativeRepresentation": "intent outcomes, end-to-end observations, open uncertainty, and release blockers",
+        "signals": [
+          "product"
+        ],
+        "dependsOn": [
+          "evidence-auditor"
+        ],
+        "agentType": "carter_acceptance_reviewer",
+        "skill": "carter-completion-gate",
+        "tools": [
+          "render-inspection-toolchain",
+          "interaction-probe-toolchain",
+          "runtime-event-ledger"
+        ],
+        "authorityScope": {
+          "source": "intent-contract",
+          "decisionClass": "final-acceptance",
+          "constraints": [
+            "independent review",
+            "human retains release authority"
+          ]
+        },
+        "activities": [
+          "intent-fidelity-review",
+          "final-product-acceptance"
+        ],
+        "authorityGranted": false
+      }
+    ],
+    "authorityGranted": false
+  },
+  "state": {
+    "schemaVersion": 1,
+    "runtimeVersion": "3.0.0",
+    "projectId": "integrity-pnl-short-intent-pilot",
+    "intentHash": "94128850a8d992c4ed2e2782f9b822e5a1312cdf3115bf32abae9bab38d773c2",
+    "zone": "PROMOTION",
+    "projectState": "READY_FOR_HUMAN",
+    "branches": {
+      "candidate-ui": {
+        "branchId": "candidate-ui",
+        "purpose": "synthetic UI candidate",
+        "state": "DESIGNING",
+        "parent": null,
+        "contained": false,
+        "candidateLineage": []
+      },
+      "candidate-data": {
+        "branchId": "candidate-data",
+        "purpose": "synthetic data candidate",
+        "state": "BUILDING",
+        "parent": null,
+        "contained": false,
+        "candidateLineage": []
+      }
+    },
+    "findings": [
+      {
+        "findingId": "finding-1",
+        "level": 2,
+        "title": "forecast tab loses source context",
+        "branchId": "candidate-ui",
+        "owner": "frontend-specialist",
+        "evidenceRefs": [
+          "synthetic://interaction/fail"
+        ],
+        "status": "RESOLVED",
+        "resolutionEvidenceRefs": [
+          "synthetic://interaction/pass"
+        ]
+      },
+      {
+        "findingId": "finding-2",
+        "level": 2,
+        "title": "replayed source-context regression failed",
+        "branchId": "candidate-ui",
+        "owner": "regression-keeper",
+        "evidenceRefs": [
+          "synthetic://interaction/replay-fail"
+        ],
+        "status": "RESOLVED",
+        "resolutionEvidenceRefs": [
+          "synthetic://interaction/replay-repair-pass"
+        ]
+      }
+    ],
+    "checkpoints": {
+      "A": {
+        "status": "PASS",
+        "evidenceRefs": [
+          "synthetic://intent-contract"
+        ]
+      },
+      "B": {
+        "status": "PASS",
+        "evidenceRefs": [
+          "synthetic://integration"
+        ]
+      },
+      "C": {
+        "status": "PASS",
+        "evidenceRefs": [
+          "synthetic://e2e",
+          "synthetic://interaction",
+          "synthetic://render"
+        ]
+      },
+      "D": {
+        "status": "PASS",
+        "evidenceRefs": [
+          "synthetic://acceptance",
+          "synthetic://security"
+        ]
+      }
+    },
+    "disagreements": [
+      {
+        "disagreementId": "disagreement-1",
+        "participants": [
+          "visual-director",
+          "workflow-specialist"
+        ],
+        "positions": {
+          "visual-director": "dense comparison",
+          "workflow-specialist": "progressive disclosure"
+        },
+        "evidence": {
+          "visual-director": [
+            "synthetic://render/a"
+          ],
+          "workflow-specialist": [
+            "synthetic://probe/b"
+          ]
+        },
+        "missingViews": {
+          "visual-director": "task frequency",
+          "workflow-specialist": "scan efficiency"
+        },
+        "resolvingObservation": "compare completion time and comprehension",
+        "status": "RESOLVED",
+        "resolution": "retain direct comparison with expandable source detail",
+        "branchId": "candidate-ui",
+        "resolutionEvidenceRefs": [
+          "synthetic://experiment/comparison"
+        ]
+      }
+    ],
+    "repairLoops": [
+      {
+        "loopId": "repair-1",
+        "findingId": "finding-1",
+        "branchId": "candidate-ui",
+        "owner": "frontend-specialist",
+        "status": "CLOSED",
+        "iterations": 1
+      },
+      {
+        "loopId": "repair-2",
+        "findingId": "finding-2",
+        "branchId": "candidate-ui",
+        "owner": "regression-keeper",
+        "status": "CLOSED",
+        "iterations": 1
+      }
+    ],
+    "regressions": {
+      "ui.forecast.source-context": {
+        "invariantId": "ui.forecast.source-context",
+        "statement": "Forecast retains visible source context",
+        "artifactScope": [
+          "ui/forecast"
+        ],
+        "status": "PASS",
+        "evidenceRefs": [
+          "synthetic://interaction/replay-repair-pass"
+        ],
+        "invalidatedBy": []
+      }
+    },
+    "humanDecisions": [],
+    "emergentRequirements": [
+      {
+        "requirementId": "emergent-1",
+        "statement": "Incomplete numbers need an explicit visible state.",
+        "sourceEvidenceRefs": [
+          "synthetic://domain-probe/incomplete"
+        ],
+        "owner": "financial-domain-specialist"
+      }
+    ],
+    "hairMessages": {
+      "hair-d4381bedceaf7749": {
+        "schemaVersion": 1,
+        "messageId": "hair-d4381bedceaf7749",
+        "sender": "financial-domain-specialist",
+        "recipient": "visual-director",
+        "nativeMessage": {
+          "kind": "financial-domain-model",
+          "invariant": "incomplete values must remain visibly incomplete",
+          "failureMode": "a blank cell can be mistaken for zero",
+          "uncertainty": "synthetic fixture; no live ledger inspected"
+        },
+        "recipientRendering": {
+          "designMeaning": "render a distinct incomplete-data state beside actual and forecast values",
+          "mustPreserve": [
+            "source traceability",
+            "unknown-is-not-zero"
+          ]
+        },
+        "evidenceRefs": [
+          "synthetic://domain-probe/incomplete"
+        ],
+        "authorityBindingRef": "intent:94128850a8d992c4ed2e2782f9b822e5a1312cdf3115bf32abae9bab38d773c2",
+        "acknowledgement": {
+          "status": "UNDERSTOOD",
+          "recipientInterpretation": {
+            "visualPlan": "add an explicit incomplete badge and preserve the source affordance"
+          },
+          "differences": []
+        },
+        "authorityGranted": false
+      },
+      "hair-ae60fde7e0770cae": {
+        "schemaVersion": 1,
+        "messageId": "hair-ae60fde7e0770cae",
+        "sender": "visual-director",
+        "recipient": "frontend-specialist",
+        "nativeMessage": {
+          "kind": "visual-direction",
+          "decision": "retain direct actual-versus-forecast comparison",
+          "spatialRelationship": "source detail expands in place without hiding the comparison",
+          "uncertainty": "real viewport behavior remains untested"
+        },
+        "recipientRendering": {
+          "implementationMeaning": "keep both values in one stable row and attach expandable source detail to that row",
+          "acceptanceProbe": "comparison remains visible before, during, and after expansion"
+        },
+        "evidenceRefs": [
+          "synthetic://experiment/comparison",
+          "synthetic://render/a"
+        ],
+        "authorityBindingRef": "intent:94128850a8d992c4ed2e2782f9b822e5a1312cdf3115bf32abae9bab38d773c2",
+        "acknowledgement": {
+          "status": "UNDERSTOOD",
+          "recipientInterpretation": {
+            "plannedChange": "stable comparison row with local disclosure"
+          },
+          "differences": []
+        },
+        "authorityGranted": false
+      }
+    },
+    "releaseAuthorized": false
+  },
+  "metrics": {
+    "measurementBasis": "runtime event chain",
+    "eventCount": 29,
+    "humanInterruptions": 0,
+    "humanDecisionsResolved": 0,
+    "totalHumanCorrections": 0,
+    "internalRepairLoops": 2,
+    "regressionsCaughtBeforeHuman": 1,
+    "emergentRequirementsDiscovered": 1,
+    "specialistDisagreementsResolvedInternally": 1,
+    "hairMessagesCreated": 2,
+    "hairRecipientRenderingsRecorded": 2,
+    "hairAcknowledgementsRecorded": 2,
+    "hairMessagesPendingAcknowledgement": 0,
+    "evidenceCompleteness": {
+      "scope": "runtime checkpoints",
+      "passed": 4,
+      "applicableTested": 4,
+      "required": 4,
+      "ratio": 1.0
+    },
+    "finalIntentFidelity": {
+      "status": "NOT_RUN",
+      "evidenceRefs": [
+        "synthetic://no-real-candidate"
+      ],
+      "assessor": "final-product-auditor"
+    },
+    "productQuality": {
+      "status": "NOT_RUN",
+      "reason": "control-plane pilot did not inspect a real product candidate"
+    }
+  },
+  "eventChain": {
+    "valid": true,
+    "errors": [],
+    "events": 29,
+    "head": "9790e07c3e4bdc0ea8bd4472b94e0ce888455b81be07acc627bff184cc8d442a"
+  },
+  "scenario": "SYNTHETIC_CONTROL_PLANE_PILOT",
+  "promotion": {
+    "eligible": true,
+    "reasons": [],
+    "releaseAuthorized": false
+  },
+  "claims": [
+    "runtime behavior only",
+    "no production data read",
+    "no real product candidate verified"
+  ]
+}

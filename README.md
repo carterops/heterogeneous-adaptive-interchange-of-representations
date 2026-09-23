@@ -28,6 +28,11 @@ intent-driven Factory runtime. Compatibility means the same envelope shape and
 identity calculation. The Factory remains responsible for task authority, tool
 admission, evidence, promotion, and release decisions.
 
+The [Runtime 3 implementation evidence](evidence/runtime-3/README.md) now includes
+the synthetic pilot's original event chain and result artifact, a local verifier,
+component test counts, and the unresolved real-project findings. It reports product
+fidelity and quality as `NOT_RUN`.
+
 ## Specialist exchange
 
 ```text
