@@ -1,16 +1,31 @@
-# H-A-I-R Bridge
+# H-A-I-R
 
-**Human–AI Representation Bridge** is a small Python library for making meaning
-visible as work moves between people and AI specialists. It preserves the sender's
-native artifact, adds a rendering for the recipient, and records whether the recipient
-understood it. It also retains an earlier experiment for exposing assumptions in
-human intent interpretation.
+**Heterogeneous Adaptive Interchange of Representations** (H-A-I-R) is a small
+Python library for representation-preserving communication between people and AI
+specialists that do not naturally reason in the same form. It preserves the sender's
+native artifact, adds a recipient-adapted rendering, and records whether the recipient
+understood it.
+
+H-A-I-R began as the **Human–AI Representation Bridge**. Human↔AI intent translation
+remains the first application, but it is no longer the definition of the project. The
+broader research direction is an **adaptive interoperability layer for heterogeneous
+representations**: participants keep their native representations while the
+communication layer adapts between them instead of forcing everyone into one shared
+schema.
 
 The project is moving toward **intent-driven specialist teams**: a person states the
 outcome and hard limits once; relevant specialists work in their own representations;
 H-A-I-R carries meaning between them; evidence supports verification; the person
 decides on release. This repository provides representation contracts for that
 direction. It is not a team orchestrator or an autonomous agent runtime.
+
+> **Core law:** H-A-I-R adapts the communication layer to the participants; it does
+> not force the participants to adapt to the communication layer.
+
+The repository and Python distribution currently retain the historical
+`human-ai-representation-bridge` identifier for continuity; the project name and
+research definition are H-A-I-R — Heterogeneous Adaptive Interchange of
+Representations.
 
 ## What is implemented
 
