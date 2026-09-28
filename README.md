@@ -133,6 +133,11 @@ real product quality were recorded as `NOT_RUN`, and release remained unauthoriz
 → [Inspect the machine-readable pilot result](evidence/runtime-3/pilot-result.json)  
 → Run `python evidence/runtime-3/verify.py` locally to verify the public evidence package.
 
+The later [full-stack first pass](research/full-stack-quality-first-pass.md) and
+[prospective paired trial](research/full-stack-quality-prospective-trial.md) record
+product-level checks, first attempts, independent findings, repairs, and remaining
+promotion blockers. Neither establishes general quality or cost gains.
+
 ## Research direction
 
 H-A-I-R began as the **Human–AI Representation Bridge**. Human↔AI intent translation
