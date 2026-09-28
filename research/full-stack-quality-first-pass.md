@@ -29,6 +29,8 @@ An isolated Astra candidate adds an opt-in full-stack quality brief carried thro
 
 These product builds do not have prospective candidate-Astra handoff, acknowledgement, and pre-build design-review traces. The runtime mechanism passed isolated tests, but this run cannot attribute the product repairs to it. A new bounded iteration with actual specialist receipts is required before testing that causal claim.
 
+The next hypothesis is narrower: prospectively enforced acknowledgements and pre-build critique may reduce source or permission mistakes and repair cycles under otherwise identical task, fixture, tool, and model settings. That comparison must save first attempts before repair; this record does not supply it.
+
 No public H-A-I-R field was added: the observed loss was in runtime coordination and product implementation, not yet in the portable representation contract.
 
 ## What remains unmeasured
